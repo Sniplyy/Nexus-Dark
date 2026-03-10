@@ -1,6 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap');
 
-/* ── CSS Variables ─────────────────────────────────────────── */
 :root {
     --bg-void: #03030a;
     --bg-deep: #07070f;
@@ -37,7 +36,6 @@
     --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ── Reset & Base ──────────────────────────────────────────── */
 *,
 *::before,
 *::after {
@@ -60,7 +58,6 @@ body {
     min-height: 100vh;
 }
 
-/* Scanline overlay */
 body::before {
     content: '';
     position: fixed;
@@ -96,7 +93,6 @@ ul {
     color: var(--cyan);
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
 }
@@ -114,7 +110,6 @@ ul {
     background: var(--cyan);
 }
 
-/* ── Typography ────────────────────────────────────────────── */
 h1,
 h2,
 h3,
@@ -142,7 +137,6 @@ h5 {
     color: var(--text-secondary);
 }
 
-/* ── Layout Utilities ──────────────────────────────────────── */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -184,7 +178,6 @@ h5 {
     margin: 0 auto;
 }
 
-/* ── Navigation ────────────────────────────────────────────── */
 .navbar {
     position: fixed;
     top: 0;
@@ -294,7 +287,6 @@ h5 {
     animation: pulse-green 2s infinite;
 }
 
-/* ── Buttons ───────────────────────────────────────────────── */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -376,7 +368,6 @@ h5 {
     font-size: 0.75rem;
 }
 
-/* ── Badge / Tag ───────────────────────────────────────────── */
 .badge {
     display: inline-flex;
     align-items: center;
@@ -414,7 +405,6 @@ h5 {
     color: var(--gold);
 }
 
-/* ── Card ──────────────────────────────────────────────────── */
 .card {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -450,7 +440,6 @@ h5 {
     opacity: 1;
 }
 
-/* ── Hero Section ──────────────────────────────────────────── */
 .hero {
     position: relative;
     min-height: 100vh;
@@ -570,7 +559,6 @@ h5 {
     color: var(--green);
 }
 
-/* ── Stats Bar ─────────────────────────────────────────────── */
 .stats-bar {
     background: rgba(0, 245, 255, 0.03);
     border-top: 1px solid var(--border);
@@ -616,7 +604,6 @@ h5 {
     align-self: stretch;
 }
 
-/* ── Features Section ──────────────────────────────────────── */
 .features-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -701,7 +688,6 @@ h5 {
     text-transform: uppercase;
 }
 
-/* ── Glow line ─────────────────────────────────────────────── */
 .glow-line {
     height: 1px;
     background: linear-gradient(90deg, transparent 0%, var(--cyan) 50%, transparent 100%);
@@ -709,7 +695,6 @@ h5 {
     opacity: 0.4;
 }
 
-/* ── Security Highlight ────────────────────────────────────── */
 .security-highlight {
     background: linear-gradient(135deg, rgba(0, 245, 255, 0.05), rgba(0, 255, 136, 0.03));
     border: 1px solid var(--border);
@@ -778,7 +763,6 @@ h5 {
     line-height: 1.5;
 }
 
-/* ── Pricing ───────────────────────────────────────────────── */
 .pricing-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -890,7 +874,6 @@ h5 {
     flex-shrink: 0;
 }
 
-/* ── CTA Banner ────────────────────────────────────────────── */
 .cta-banner {
     background: linear-gradient(135deg, rgba(0, 245, 255, 0.08) 0%, rgba(0, 0, 0, 0) 60%),
         linear-gradient(225deg, rgba(0, 255, 136, 0.05) 0%, rgba(0, 0, 0, 0) 60%);
@@ -937,7 +920,6 @@ h5 {
     position: relative;
 }
 
-/* ── Footer ────────────────────────────────────────────────── */
 .footer {
     background: var(--bg-deep);
     border-top: 1px solid var(--border);
@@ -1026,7 +1008,6 @@ h5 {
     word-break: break-all;
 }
 
-/* ── Animations ────────────────────────────────────────────── */
 @keyframes blink {
 
     0%,
@@ -1168,7 +1149,6 @@ h5 {
     opacity: 0.4;
 }
 
-/* Scroll reveal */
 .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -1201,7 +1181,6 @@ h5 {
     transition-delay: 0.5s;
 }
 
-/* ── Misc / Utility ────────────────────────────────────────── */
 .text-center {
     text-align: center;
 }
@@ -1246,7 +1225,6 @@ h5 {
     align-items: center;
 }
 
-/* Hex background pattern */
 .hex-bg {
     position: relative;
     overflow: hidden;
@@ -1268,7 +1246,6 @@ h5 {
     z-index: 1;
 }
 
-/* No-logs pill */
 .no-logs-pill {
     display: inline-flex;
     align-items: center;
@@ -1290,7 +1267,6 @@ h5 {
     animation: blink 1.5s step-end infinite;
 }
 
-/* Hamburger */
 .hamburger {
     display: none;
     flex-direction: column;
@@ -1308,7 +1284,6 @@ h5 {
     transition: var(--transition);
 }
 
-/* ── Forms ─────────────────────────────────────────────────── */
 .form-group {
     margin-bottom: 20px;
 }
@@ -1360,7 +1335,6 @@ h5 {
     background: var(--bg-deep);
 }
 
-/* ── Warning Box ───────────────────────────────────────────── */
 .warn-box {
     background: rgba(255, 34, 68, 0.06);
     border: 1px solid rgba(255, 34, 68, 0.2);
@@ -1376,7 +1350,6 @@ h5 {
     color: var(--red-warn);
 }
 
-/* ── Page Header (inner pages) ─────────────────────────────── */
 .page-hero {
     padding: 140px 0 80px;
     text-align: center;
@@ -1409,7 +1382,6 @@ h5 {
     position: relative;
 }
 
-/* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 1024px) {
     .features-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1490,7 +1462,6 @@ h5 {
     }
 }
 
-/* ── DevTools Warning Overlay ──────────────────────────────── */
 #security-overlay {
     display: none;
     position: fixed;
@@ -1523,7 +1494,6 @@ h5 {
     line-height: 1.7;
 }
 
-/* ── Mobile Nav ────────────────────────────────────────────── */
 .mobile-nav {
     position: fixed;
     top: 70px;

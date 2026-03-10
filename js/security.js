@@ -1,13 +1,6 @@
-﻿/* ================================================================
-   NEXUS DARK — security.js
-   Client-side security hardening for dark-web hosted SaaS platform
-   ================================================================ */
-
-(function () {
+﻿(function () {
     'use strict';
 
-    // ── 1. Referrer Policy ───────────────────────────────────────
-    // Set programmatically as a belt-and-suspenders alongside meta tag
     const refMeta = document.querySelector('meta[name="referrer"]');
     if (!refMeta) {
         const m = document.createElement('meta');
@@ -16,33 +9,30 @@
         document.head.appendChild(m);
     }
 
-    // ── 2. Disable Right-Click Context Menu ──────────────────────
     document.addEventListener('contextmenu', e => {
         e.preventDefault();
         showToast('Context menu disabled for security purposes.');
     });
 
-    // ── 3. Disable Certain Key Combinations ─────────────────────
     document.addEventListener('keydown', e => {
-        // Block F12
+
         if (e.key === 'F12') { e.preventDefault(); return; }
-        // Block Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C (DevTools)
+
         if (e.ctrlKey && e.shiftKey && ['I', 'J', 'C', 'i', 'j', 'c'].includes(e.key)) {
             e.preventDefault();
             return;
         }
-        // Block Ctrl+U (source view)
+
         if (e.ctrlKey && ['U', 'u'].includes(e.key)) {
             e.preventDefault();
             return;
         }
-        // Block Ctrl+S (save)
+
         if (e.ctrlKey && ['S', 's'].includes(e.key)) {
             e.preventDefault();
         }
     });
 
-    // ── 4. DevTools Detection ────────────────────────────────────
     let devToolsOpen = false;
     const threshold = 160;
 
@@ -75,7 +65,6 @@
         if (overlay) overlay.classList.remove('show');
     }
 
-    // ── 5. Text Selection Watermark ─────────────────────────────
     document.addEventListener('copy', e => {
         const selection = window.getSelection().toString();
         if (selection.trim().length > 0) {
@@ -87,20 +76,17 @@
         }
     });
 
-    // ── 6. Encrypted Submission Hint (Forms) ─────────────────────
     document.querySelectorAll('form').forEach(form => {
         form.addEventListener('submit', e => {
             e.preventDefault();
 
-            // Honeypot check
             const honeypot = form.querySelector('[name="website"]');
             if (honeypot && honeypot.value) {
-                // Bot detected — silently fail
+
                 showToast('Submission received.');
                 return;
             }
 
-            // Simulate secure submission (replace with real backend)
             const btn = form.querySelector('[type="submit"]');
             if (btn) {
                 const original = btn.innerHTML;
@@ -120,7 +106,6 @@
         });
     });
 
-    // ── 7. Toast Notification ────────────────────────────────────
     function showToast(message) {
         let container = document.getElementById('toast-container');
         if (!container) {
@@ -159,23 +144,19 @@
         }, 5000);
     }
 
-    // ── 8. Timing Attack Prevention (Random Delays) ──────────────
-    // Add jitter to any measured operations to make timing side-channel harder
     window._secureDelay = function (fn, base) {
         const jitter = Math.floor(Math.random() * 80);
         setTimeout(fn, (base || 0) + jitter);
     };
 
-    // ── 9. Page Visibility — Warn on tab switch ──────────────────
     let hiddenWarned = false;
     document.addEventListener('visibilitychange', () => {
         if (document.hidden && !hiddenWarned) {
             hiddenWarned = true;
-            // noop — could log session anomaly
+
         }
     });
 
-    // ── 10. Console Warning ───────────────────────────────────────
     const styles = [
         'color: #ff2244; font-size: 20px; font-weight: bold; font-family: monospace;',
         'color: #8892aa; font-size: 13px; font-family: monospace;',

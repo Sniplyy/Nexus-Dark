@@ -1,11 +1,5 @@
-﻿/* ================================================================
-   NEXUS DARK — main.js
-   Particle network canvas, typed text, scroll reveal, counters
-   ================================================================ */
+﻿document.addEventListener('DOMContentLoaded', () => {
 
-document.addEventListener('DOMContentLoaded', () => {
-
-  // ── Navbar scroll effect ──────────────────────────────────────
   const navbar = document.getElementById('navbar');
   if (navbar) {
     window.addEventListener('scroll', () => {
@@ -13,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ── Hamburger ─────────────────────────────────────────────────
   const hamburger = document.getElementById('hamburger');
   const mobileNav = document.getElementById('mobile-nav');
   if (hamburger && mobileNav) {
@@ -22,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ── Particle Canvas (Tor Network Graph) ───────────────────────
   const canvas = document.getElementById('hero-canvas');
   if (canvas) {
     const ctx = canvas.getContext('2d');
@@ -59,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.clearRect(0, 0, W, H);
       frame++;
 
-      // Draw edges
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[i].x - nodes[j].x;
@@ -77,12 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      // Draw nodes
       nodes.forEach(n => {
         n.pulse += 0.02;
         const glowAlpha = n.alpha * (0.7 + 0.3 * Math.sin(n.pulse));
 
-        // Glow
         const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 5);
         grad.addColorStop(0, n.color + glowAlpha + ')');
         grad.addColorStop(1, n.color + '0)');
@@ -91,13 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillStyle = grad;
         ctx.fill();
 
-        // Core dot
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
         ctx.fillStyle = n.color + glowAlpha + ')';
         ctx.fill();
 
-        // Move
         n.x += n.vx;
         n.y += n.vy;
         if (n.x < 0 || n.x > W) n.vx *= -1;
@@ -113,7 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
     draw();
   }
 
-  // ── Typed Text Animation ──────────────────────────────────────
   const typedEl = document.getElementById('typed-text');
   if (typedEl) {
     const phrases = [
@@ -147,7 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
     type();
   }
 
-  // ── Scroll Reveal ─────────────────────────────────────────────
   const revealEls = document.querySelectorAll('.reveal');
   if (revealEls.length) {
     const observer = new IntersectionObserver(entries => {
@@ -161,7 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach(el => observer.observe(el));
   }
 
-  // ── Counter Animation ─────────────────────────────────────────
   const counters = document.querySelectorAll('[data-count]');
   if (counters.length) {
     const countObserver = new IntersectionObserver(entries => {
@@ -189,19 +173,17 @@ document.addEventListener('DOMContentLoaded', () => {
     counters.forEach(c => countObserver.observe(c));
   }
 
-  // ── Glitch Trigger ────────────────────────────────────────────
   const glitchEls = document.querySelectorAll('.glitch-text');
   glitchEls.forEach(el => {
     el.setAttribute('data-text', el.textContent);
     setInterval(() => {
       el.style.animation = 'none';
       const pseudo = el.querySelector('::before');
-      // trigger repaint
+
       void el.offsetWidth;
     }, 5000 + Math.random() * 3000);
   });
 
-  // ── Pricing Card Hover Tilt ───────────────────────────────────
   document.querySelectorAll('.pricing-card, .feature-card').forEach(card => {
     card.addEventListener('mousemove', e => {
       const rect = card.getBoundingClientRect();
@@ -218,7 +200,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ── Highlight active nav link ─────────────────────────────────
   const currentPage = window.location.pathname.split('/').pop();
   document.querySelectorAll('.nav-links a, .mobile-nav a').forEach(link => {
     const href = link.getAttribute('href');
