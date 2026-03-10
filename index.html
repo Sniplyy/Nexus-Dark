@@ -1,0 +1,457 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+    <title>NEXUS DARK — Sovereign SaaS for Governments</title>
+    <meta name="description"
+        content="Enterprise-grade intelligence and cyber tools for government agencies, operating exclusively on the Tor network with zero-knowledge architecture." />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="images/logo_shield.png" />
+</head>
+
+<body>
+
+    <!-- Security Overlay -->
+    <div id="security-overlay">
+        <h2>[!] SECURITY ALERT</h2>
+        <p>Developer tools detected.<br />This session has been flagged. Close developer tools to continue.</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a class="nav-logo" href="index.html">
+                <img src="images/logo_shield.png" alt="NEXUS DARK Logo" />
+                <div class="logo-text">NEXUS <span>DARK</span></div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="html/solutions.html">Solutions</a></li>
+                <li><a href="html/security.html">Security</a></li>
+                <li><a href="html/contact.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-cta">
+                <div class="nav-status">
+                    <span class="dot"></span>
+                    <span>NETWORK SECURE</span>
+                </div>
+                <a href="html/contact.html" class="btn btn-primary btn-sm">Request Access</a>
+            </div>
+
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Nav -->
+    <nav class="mobile-nav" id="mobile-nav">
+        <a href="index.html">Home</a>
+        <a href="html/solutions.html">Solutions</a>
+        <a href="html/security.html">Security</a>
+        <a href="html/contact.html">Contact</a>
+        <a href="html/contact.html" class="btn btn-primary btn-sm" style="width:fit-content">Request Access</a>
+    </nav>
+
+    <!-- ── Hero ──────────────────────────────────────────────────── -->
+    <section class="hero" id="hero">
+        <canvas id="hero-canvas"></canvas>
+        <img src="images/hero_bg.png" alt="" class="hero-bg-img" aria-hidden="true" />
+
+        <div class="hero-content">
+
+            <div class="hero-eyebrow">
+                <span class="badge badge-red"> CLEARANCE REQUIRED</span>
+                <span class="badge badge-green">&#x25CF; TOR v3 ONION SERVICE ACTIVE</span>
+            </div>
+
+            <div class="terminal-bar">
+                <span class="prompt">root@nexus:~$</span>
+                <span id="typed-text"></span><span class="typed-cursor">&#9646;</span>
+            </div>
+
+            <h1 class="hero-h1 glitch-text" data-text="Sovereign Intelligence Infrastructure for Governments">
+                Sovereign Intelligence<br />
+                Infrastructure for<br />
+                <span class="accent">Governments.</span>
+            </h1>
+
+            <p class="hero-desc">
+                NEXUS DARK provides nation-state grade SaaS tools — signals intelligence, cyber operations, predictive
+                analytics, and secure communications — delivered exclusively over the Tor network.
+            </p>
+
+            <div class="hero-actions">
+                <a href="html/contact.html" class="btn btn-primary btn-lg" id="cta-access">
+                    Request Secure Access
+                </a>
+                <a href="html/solutions.html" class="btn btn-outline btn-lg" id="cta-solutions">
+                    View Solutions &rarr;
+                </a>
+            </div>
+
+            <div class="hero-meta">
+                <span class="no-logs-pill">ZERO LOGS</span>
+                <span class="sep">&nbsp;/&nbsp;</span>
+                <span>AES-256-GCM Encryption</span>
+                <span class="sep">&nbsp;/&nbsp;</span>
+                <span>Air-Gap Compatible</span>
+                <span class="sep">&nbsp;/&nbsp;</span>
+                <span>Five-Eyes Hardened</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ── Stats Bar ─────────────────────────────────────────────── -->
+    <div class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item reveal reveal-delay-1">
+                <span class="stat-number" data-count="47" data-suffix="+">0+</span>
+                <span class="stat-label">Nation-State Clients</span>
+            </div>
+            <div class="stat-item reveal reveal-delay-2">
+                <span class="stat-number" data-count="99.999" data-dec="3" data-suffix="%">0%</span>
+                <span class="stat-label">Guaranteed Uptime</span>
+            </div>
+            <div class="stat-item reveal reveal-delay-3">
+                <span class="stat-number" data-count="256" data-suffix="-bit">0-bit</span>
+                <span class="stat-label">AES Encryption</span>
+            </div>
+            <div class="stat-item reveal reveal-delay-4">
+                <span class="stat-number" data-count="0" data-suffix=" Logs">0 Logs</span>
+                <span class="stat-label">Zero-Knowledge Architecture</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Features ──────────────────────────────────────────────── -->
+    <section class="section hex-bg" id="features">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">&#x25CF; Core Capabilities</span>
+                <h2 class="section-title">Tools Built for Sovereign Operations</h2>
+                <p class="section-desc">Every module purpose-built for intelligence, defense, and cyber-sovereignty
+                    mandates.</p>
+            </div>
+
+            <div class="features-grid">
+
+                <div class="feature-card card reveal reveal-delay-1">
+                    <div class="feature-icon">SIG</div>
+                    <h3 class="feature-title">Signals Intelligence Suite</h3>
+                    <p class="feature-desc">Real-time SIGINT collection, RF spectrum analysis, and cross-band signal
+                        correlation — all processed in isolated enclaves.</p>
+                    <div class="feature-tags">
+                        <span class="tag">SIGINT</span>
+                        <span class="tag">RF Analysis</span>
+                        <span class="tag">Enclave</span>
+                    </div>
+                </div>
+
+                <div class="feature-card card reveal reveal-delay-2">
+                    <div class="feature-icon">CYB</div>
+                    <h3 class="feature-title">Cyber Offense Suite</h3>
+                    <p class="feature-desc">Nation-state grade exploit frameworks, zero-day cataloguing, campaign
+                        orchestration, and target attribution engines.</p>
+                    <div class="feature-tags">
+                        <span class="tag">0-Day</span>
+                        <span class="tag">Attribution</span>
+                        <span class="tag">APT Ops</span>
+                    </div>
+                </div>
+
+                <div class="feature-card card reveal reveal-delay-3">
+                    <div class="feature-icon">AI</div>
+                    <h3 class="feature-title">Predictive Analytics</h3>
+                    <p class="feature-desc">AI-driven threat modeling, geopolitical risk forecasting, and
+                        pattern-of-life analysis from multi-source intelligence feeds.</p>
+                    <div class="feature-tags">
+                        <span class="tag">ML/AI</span>
+                        <span class="tag">Threat Intel</span>
+                        <span class="tag">Geopolitics</span>
+                    </div>
+                </div>
+
+                <div class="feature-card card reveal reveal-delay-1">
+                    <div class="feature-icon">COM</div>
+                    <h3 class="feature-title">Secure Communications</h3>
+                    <p class="feature-desc">Post-quantum encrypted messaging, covert channel infrastructure, and
+                        dead-drop-as-a-service for field operatives.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Post-Quantum</span>
+                        <span class="tag">Dead Drop</span>
+                        <span class="tag">Covert</span>
+                    </div>
+                </div>
+
+                <div class="feature-card card reveal reveal-delay-2">
+                    <div class="feature-icon">OSI</div>
+                    <h3 class="feature-title">Open-Source Intel Hub</h3>
+                    <p class="feature-desc">Automated OSINT aggregation across dark web forums, paste sites, social
+                        platforms, and leaked database repositories.</p>
+                    <div class="feature-tags">
+                        <span class="tag">OSINT</span>
+                        <span class="tag">Dark Web</span>
+                        <span class="tag">Aggregation</span>
+                    </div>
+                </div>
+
+                <div class="feature-card card reveal reveal-delay-3">
+                    <div class="feature-icon">FOR</div>
+                    <h3 class="feature-title">Digital Forensics Platform</h3>
+                    <p class="feature-desc">Remote forensic acquisition, memory analysis, encrypted disk imaging, and
+                        chain-of-custody management for cyber investigations.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Forensics</span>
+                        <span class="tag">Memory</span>
+                        <span class="tag">Chain-of-Custody</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="glow-line"></div>
+
+    <!-- ── Security Highlight ─────────────────────────────────────── -->
+    <section class="section" id="security-section">
+        <div class="container">
+            <div class="security-highlight reveal">
+                <div class="inner">
+                    <div class="security-grid">
+                        <div>
+                            <span class="section-label"> Security Architecture</span>
+                            <h2
+                                style="font-size:clamp(1.6rem,3vw,2.5rem); margin-bottom:16px; background:linear-gradient(135deg,#e8eaf0,#00f5ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">
+                                Built to Operate in the Harshest Threat Environments
+                            </h2>
+                            <p style="color:var(--text-secondary);margin-bottom:28px;line-height:1.7;">
+                                Every component of NEXUS DARK is engineered under the assumption of compromise — zero
+                                trust, zero logs, zero attribution.
+                            </p>
+                            <a href="html/security.html" class="btn btn-outline">View Full Security Architecture
+                                &rarr;</a>
+                        </div>
+
+                        <div class="security-items">
+                            <div class="security-item">
+                                <span class="security-item-icon">&#x25CF;</span>
+                                <div>
+                                    <div class="security-item-title">Onion Routing (Tor v3)</div>
+                                    <div class="security-item-desc">All traffic routed through minimum 6-hop Tor
+                                        circuits. .onion v3 addresses for perfect forward secrecy.</div>
+                                </div>
+                            </div>
+                            <div class="security-item">
+                                <span class="security-item-icon">&#x25CF;</span>
+                                <div>
+                                    <div class="security-item-title">Post-Quantum Encryption</div>
+                                    <div class="security-item-desc">CRYSTALS-Kyber KEM + AES-256-GCM hybrid for
+                                        protection against CRQC-class adversaries.</div>
+                                </div>
+                            </div>
+                            <div class="security-item">
+                                <span class="security-item-icon">&#x25CF;</span>
+                                <div>
+                                    <div class="security-item-title">Air-Gap Compatible</div>
+                                    <div class="security-item-desc">Offline-capable modules with one-way data diodes
+                                        support for classified network environments.</div>
+                                </div>
+                            </div>
+                            <div class="security-item">
+                                <span class="security-item-icon">&#x25CF;</span>
+                                <div>
+                                    <div class="security-item-title">Compartmentalized Architecture</div>
+                                    <div class="security-item-desc">Microservices in isolated hardware enclaves (Intel
+                                        TDX / AMD SEV). No cross-tenant data bleed.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Pricing ────────────────────────────────────────────────── -->
+    <section class="section hex-bg" id="pricing">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">&#x25CF; Clearance Tiers</span>
+                <h2 class="section-title">Access Levels</h2>
+                <p class="section-desc">All tiers are PGP-verified during onboarding. Payment via Monero only. No fiat
+                    accepted.</p>
+            </div>
+
+            <div class="pricing-grid">
+
+                <!-- Tier 1: Sovereign -->
+                <div class="pricing-card reveal reveal-delay-1">
+                    <div class="pricing-tier">Tier I</div>
+                    <div class="pricing-name">Sovereign</div>
+                    <div class="badge badge-cyan" style="margin-bottom:4px;">ENTRY CLEARANCE</div>
+                    <div class="pricing-price"><sup>XMR</sup>120</div>
+                    <div class="pricing-period">/ month per agency unit</div>
+                    <div class="pricing-divider"></div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature"><span class="check">&#9670;</span> OSINT Intelligence Hub</li>
+                        <li class="pricing-feature"><span class="check">&#9670;</span> Secure Messaging (100 agents)
+                        </li>
+                        <li class="pricing-feature"><span class="check">&#9670;</span> Basic Threat Analytics</li>
+                        <li class="pricing-feature"><span class="check">&#9670;</span> Tor-native API access</li>
+                        <li class="pricing-feature"><span class="check">&#9670;</span> 99.9% uptime SLA</li>
+                        <li class="pricing-feature" style="opacity:0.4;"><span class="lock">&#x25A0;</span> Cyber
+                            Offense Suite</li>
+                        <li class="pricing-feature" style="opacity:0.4;"><span class="lock">&#x25A0;</span> SIGINT
+                            Collection</li>
+                    </ul>
+                    <a href="html/contact.html" class="btn btn-ghost" style="width:100%;justify-content:center;">Request
+                        Brief</a>
+                </div>
+
+                <!-- Tier 2: Strategic (Featured) -->
+                <div class="pricing-card featured reveal reveal-delay-2">
+                    <div class="pricing-tier">Tier II</div>
+                    <div class="pricing-name">Strategic</div>
+                    <div class="badge badge-cyan" style="margin-bottom:4px;">FULL CLEARANCE</div>
+                    <div class="pricing-price"><sup>XMR</sup>480</div>
+                    <div class="pricing-period">/ month per agency unit</div>
+                    <div class="pricing-divider" style="background:rgba(0,245,255,0.2);"></div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature"><span class="check">&#9670;</span> Everything in Sovereign</li>
+                        <li class="pricing-feature"><span class="check">&#9670;</span> Full SIGINT Suite</li>
+                        <li class="pricing-feature"><span class="check">&#9670;</span> Predictive Analytics (AI)</li>
+                        <li class="pricing-feature"><span class="check">&#9670;</span> Digital Forensics Platform</li>
+                        <li class="pricing-feature"><span class="check">&#9670;</span> Unlimited agent seats</li>
+                        <li class="pricing-feature"><span class="check">&#9670;</span> 99.99% uptime SLA</li>
+                        <li class="pricing-feature" style="opacity:0.4;"><span class="lock">&#x25A0;</span> Cyber
+                            Offense Suite</li>
+                    </ul>
+                    <a href="html/contact.html" class="btn btn-primary"
+                        style="width:100%;justify-content:center;">Request Brief</a>
+                </div>
+
+                <!-- Tier 3: Classified -->
+                <div class="pricing-card reveal reveal-delay-3">
+                    <div class="pricing-tier">Tier III</div>
+                    <div class="pricing-name">Classified</div>
+                    <div class="badge badge-gold" style="margin-bottom:4px;">TOP SECRET</div>
+                    <div class="pricing-price" style="font-size:1.8rem;margin-top:16px;letter-spacing:-0.02em;">CONTACT
+                        FOR<br />PRICING</div>
+                    <div class="pricing-period" style="margin-top:8px;">Nation-state custom contract</div>
+                    <div class="pricing-divider"></div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature"><span class="check">&#9670;</span> Everything in Strategic</li>
+                        <li class="pricing-feature"><span class="check">&#9670;</span> Full Cyber Offense Suite</li>
+                        <li class="pricing-feature"><span class="check">&#9670;</span> Custom 0-Day Acquisition</li>
+                        <li class="pricing-feature"><span class="check">&#9670;</span> Dedicated black-site infra</li>
+                        <li class="pricing-feature"><span class="check">&#9670;</span> War-room integration</li>
+                        <li class="pricing-feature"><span class="check">&#9670;</span> 99.999% uptime SLA</li>
+                        <li class="pricing-feature"><span class="check">&#9670;</span> 24/7 Dark-Ops Support</li>
+                    </ul>
+                    <a href="html/contact.html" class="btn btn-outline"
+                        style="width:100%;justify-content:center;">Establish Contact</a>
+                </div>
+
+            </div>
+
+            <p
+                style="text-align:center;font-family:var(--font-mono);font-size:0.72rem;color:var(--text-dim);margin-top:32px;letter-spacing:0.08em;">
+                ALL PAYMENTS VIA MONERO (XMR) &nbsp;|&nbsp; PGP IDENTITY VERIFICATION REQUIRED &nbsp;|&nbsp; NO FIAT
+                &nbsp;|&nbsp; NO KYC
+            </p>
+        </div>
+    </section>
+
+    <div class="glow-line"></div>
+
+    <!-- ── CTA Banner ─────────────────────────────────────────────── -->
+    <section class="section" id="cta">
+        <div class="container">
+            <div class="cta-banner reveal">
+                <span class="section-label" style="display:block;text-align:center;margin-bottom:12px;">&#x25CF; Begin
+                    Onboarding</span>
+                <h2>Ready to Establish a<br /><span class="text-cyan">Secure Channel?</span></h2>
+                <p>All communications are PGP-encrypted. Our response will arrive via dead-drop within 48 hours. No
+                    metadata retained.</p>
+                <div class="cta-actions">
+                    <a href="html/contact.html" class="btn btn-primary btn-lg"> Initiate Secure Contact</a>
+                    <a href="html/security.html" class="btn btn-ghost btn-lg">Read Security Brief</a>
+                </div>
+                <div class="onion-addr" style="margin-top:28px;font-size:0.68rem;opacity:0.5;">
+                    nexusd4rkgvxr7m6n8kp2qstjwfae1ovxlcb3huyiz5e9wdmno.onion
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Footer ─────────────────────────────────────────────────── -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a class="nav-logo" href="index.html">
+                        <img src="images/logo_shield.png" alt="NEXUS DARK" />
+                        <div class="logo-text">NEXUS <span>DARK</span></div>
+                    </a>
+                    <p>Sovereign-grade intelligence infrastructure for governments operating in contested digital
+                        environments.</p>
+                    <div class="pgp-block">
+                        <span class="hdr">-----BEGIN PGP PUBLIC KEY BLOCK-----</span><br />
+                        mQINBF... [truncated] ...AAQAB<br />
+                        <span class="hdr">-----END PGP PUBLIC KEY BLOCK-----</span><br />
+                        Fingerprint: 4A2F 8C1E 3D7B 9F02 A5E6<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B841 0C3A D9F7
+                        2E16 88CA
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <a href="html/solutions.html">Solutions</a>
+                    <a href="html/security.html">Security</a>
+                    <a href="index.html#pricing">Pricing</a>
+                    <a href="html/contact.html">Contact</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">No-Logs Policy</a>
+                    <a href="#">Acceptable Use</a>
+                    <a href="#">Jurisdictional Info</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Operations</h4>
+                    <a href="#">Status Page</a>
+                    <a href="#">Dead Drop Protocol</a>
+                    <a href="#">PGP Key Server</a>
+                    <a href="#">Incident Response</a>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>&#169; 2024 NEXUS DARK OPERATIONS. ALL RIGHTS RESERVED. THIS SERVICE IS RESTRICTED TO AUTHORIZED
+                    GOVERNMENT ENTITIES.</p>
+                <p class="no-logs-pill">NO LOGS &nbsp; NO TRACES &nbsp; NO ATTRIBUTION</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/security.js"></script>
+</body>
+
+</html>

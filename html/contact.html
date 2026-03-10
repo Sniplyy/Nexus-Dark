@@ -1,0 +1,344 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+    <title>Secure Contact — NEXUS DARK</title>
+    <meta name="description"
+        content="Initiate encrypted contact with NEXUS DARK. All submissions are PGP-encrypted and routed through Tor." />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="icon" href="../images/logo_shield.png" />
+    <style>
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            margin-bottom: 12px;
+            transition: var(--transition);
+        }
+
+        .info-item:hover {
+            border-color: var(--border-bright);
+            background: var(--bg-card-hover);
+        }
+
+        .info-item-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .info-item-title {
+            font-weight: 600;
+            font-size: .9rem;
+            color: var(--cyan);
+            margin-bottom: 4px;
+        }
+
+        .info-item-desc {
+            font-size: .82rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+        }
+
+        .dead-drop-box {
+            background: rgba(0, 0, 0, .5);
+            border: 1px solid rgba(0, 255, 136, .2);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            font-family: var(--font-mono);
+            font-size: .75rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-top: 16px;
+        }
+
+        .dead-drop-box .step-num {
+            color: var(--green);
+            margin-right: 8px;
+        }
+
+        @media (max-width:900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="security-overlay">
+        <h2>[!] SECURITY ALERT</h2>
+        <p>Developer tools detected. Session flagged.</p>
+    </div>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a class="nav-logo" href="../index.html">
+                <img src="../images/logo_shield.png" alt="NEXUS DARK" />
+                <div class="logo-text">NEXUS <span>DARK</span></div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="security.html">Security</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <div class="nav-status"><span class="dot"></span><span>NETWORK SECURE</span></div>
+                <a href="contact.html" class="btn btn-primary btn-sm">Request Access</a>
+            </div>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+    <nav class="mobile-nav" id="mobile-nav">
+        <a href="../index.html">Home</a><a href="solutions.html">Solutions</a>
+        <a href="security.html">Security</a><a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+        <div class="container">
+            <span class="badge badge-green" style="margin-bottom:16px;display:inline-flex;">&#x25CF; End-to-End
+                Encrypted</span>
+            <h1>Initiate a<br /><span class="text-cyan">Secure Channel</span></h1>
+            <p>All submissions are PGP-encrypted in transit and routed through Tor. Zero metadata retained. Our response
+                arrives via dead-drop within 48 hours.</p>
+        </div>
+    </div>
+
+    <!-- Main Contact Section -->
+    <section class="section" id="contact-form-section">
+        <div class="container">
+            <div class="contact-grid">
+
+                <!-- Left: Form -->
+                <div>
+                    <div class="warn-box" style="margin-bottom:28px;">
+                        <strong>[!] SECURITY NOTICE:</strong> Before submitting, ensure you are connected via Tor
+                        Browser and this page is loading from the .onion address. If accessing via clearnet, your
+                        metadata may be exposed.
+                    </div>
+
+                    <div class="card" style="padding:40px;">
+                        <h2 style="font-size:1.4rem;margin-bottom:8px;">Access Request Form</h2>
+                        <p
+                            style="font-size:.85rem;color:var(--text-secondary);margin-bottom:28px;font-family:var(--font-mono);">
+                            CLASSIFICATION: UNCLASSIFIED / RESTRICTED</p>
+
+                        <form id="contact-form" novalidate>
+
+                            <!-- Honeypot (hidden) -->
+                            <input type="text" name="website" style="display:none;" tabindex="-1" autocomplete="off" />
+
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                                <div class="form-group">
+                                    <label class="form-label" for="agency-name">Agency / Organization *</label>
+                                    <input class="form-input" type="text" id="agency-name" name="agency"
+                                        placeholder="Ministry of Defense" required />
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="country">Country / Jurisdiction *</label>
+                                    <input class="form-input" type="text" id="country" name="country"
+                                        placeholder="Classified" required />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="contact-role">Role / Clearance Level *</label>
+                                <select class="form-select" id="contact-role" name="role" required>
+                                    <option value="" disabled selected>Select your clearance level</option>
+                                    <option value="analyst">Intelligence Analyst</option>
+                                    <option value="officer">Senior Intelligence Officer</option>
+                                    <option value="director">Director / Deputy Director</option>
+                                    <option value="minister">Minister / Secretary</option>
+                                    <option value="military">Military Command</option>
+                                    <option value="classified">Prefer Not to Disclose</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="modules">Modules of Interest *</label>
+                                <select class="form-select" id="modules" name="modules" required>
+                                    <option value="" disabled selected>Select primary capability</option>
+                                    <option value="sigint">Signals Intelligence Suite</option>
+                                    <option value="cyber">Cyber Offense Suite (Tier III only)</option>
+                                    <option value="analytics">Predictive Analytics</option>
+                                    <option value="comms">Secure Communications</option>
+                                    <option value="osint">OSINT Intelligence Hub</option>
+                                    <option value="forensics">Digital Forensics Platform</option>
+                                    <option value="full">Full Platform Access</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="pgp-key">Your PGP Public Key *</label>
+                                <textarea class="form-textarea" id="pgp-key" name="pgp"
+                                    placeholder="-----BEGIN PGP PUBLIC KEY BLOCK-----&#10;&#10;[Paste your full PGP public key here. We will encrypt our response to this key.]&#10;&#10;-----END PGP PUBLIC KEY BLOCK-----"
+                                    style="min-height:160px;" required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="message">Operational Brief (Optional)</label>
+                                <textarea class="form-textarea" id="message" name="message"
+                                    placeholder="Describe your operational requirements, deployment environment, or specific capability needs. This field is optional but helps us prepare a relevant briefing."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="tier">Requested Access Tier</label>
+                                <select class="form-select" id="tier" name="tier">
+                                    <option value="sovereign">Tier I — Sovereign (XMR 120/mo)</option>
+                                    <option value="strategic">Tier II — Strategic (XMR 480/mo)</option>
+                                    <option value="classified">Tier III — Classified (Custom pricing)</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary"
+                                style="width:100%;justify-content:center;padding:16px;" id="submit-btn">
+                                 Encrypt &amp; Submit Request
+                            </button>
+
+                            <p
+                                style="text-align:center;font-family:var(--font-mono);font-size:.68rem;color:var(--text-dim);margin-top:14px;line-height:1.6;">
+                                By submitting, you confirm you are an authorized representative of a government
+                                entity.<br />
+                                All data is AES-256 encrypted before transmission. Zero logs retained.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Right: Instructions & Info -->
+                <div>
+                    <span class="section-label" style="margin-bottom:20px;display:block;">&#x25CF; Contact
+                        Protocols</span>
+
+                    <div class="info-item">
+                        <span class="info-item-icon"></span>
+                        <div>
+                            <div class="info-item-title">Response via Dead Drop</div>
+                            <div class="info-item-desc">We do not send email. Our response will arrive as a
+                                PGP-encrypted message to a one-time .onion dead-drop address we create for you. Check
+                                back within 48 hours.</div>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-item-icon"></span>
+                        <div>
+                            <div class="info-item-title">PGP Required</div>
+                            <div class="info-item-desc">You must provide a valid PGP public key. We will only
+                                communicate via PGP-encrypted channels. Messages not encrypted to our key will be
+                                discarded.</div>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-item-icon"></span>
+                        <div>
+                            <div class="info-item-title">Payment: Monero Only</div>
+                            <div class="info-item-desc">All subscriptions are billed in XMR (Monero). No fiat, no crypto
+                                other than Monero. A Monero wallet address will be provided in the onboarding brief.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-item-icon"></span>
+                        <div>
+                            <div class="info-item-title">Verification Process</div>
+                            <div class="info-item-desc">All clients undergo a 4-stage vetting process: PGP identity
+                                verification, operational scope review, jurisdictional compliance check, and signed NDA
+                                via PGP signature.</div>
+                        </div>
+                    </div>
+
+                    <!-- Dead drop instructions -->
+                    <div style="margin-top:24px;">
+                        <span class="section-label" style="margin-bottom:12px;display:block;">&#x25CF; Manual Dead Drop
+                            Protocol</span>
+                        <div class="dead-drop-box">
+                            <div><span class="step-num">01.</span> Launch Tor Browser. Navigate to our .onion address.
+                            </div>
+                            <div><span class="step-num">02.</span> Compose your request. Encrypt it with our PGP key
+                                (see Security page).</div>
+                            <div><span class="step-num">03.</span> Paste the encrypted ciphertext into the dead-drop
+                                submission box.</div>
+                            <div><span class="step-num">04.</span> Include your PGP public key in the submission
+                                payload.</div>
+                            <div><span class="step-num">05.</span> We will create a unique dead-drop .onion URL and
+                                encrypt a reply to your key within 48h.</div>
+                            <div style="margin-top:12px;color:var(--green);"><span class="step-num">&#x2714;</span> All
+                                messages are ephemeral — purged after 72h.</div>
+                        </div>
+                    </div>
+
+                    <!-- .onion address block -->
+                    <div class="card" style="margin-top:24px;padding:20px;">
+                        <span class="section-label" style="margin-bottom:10px;display:block;">&#x25CF; Our .onion
+                            Address</span>
+                        <div class="onion-addr" style="font-size:.7rem;letter-spacing:.03em;line-height:1.8;">
+                            nexusd4rkgvxr7m6n8kp2qstjwfae1ovxlcb3huyiz5e9wdmno.onion</div>
+                        <div
+                            style="font-family:var(--font-mono);font-size:.65rem;color:var(--text-dim);margin-top:8px;">
+                            Tor v3 Hidden Service &nbsp;|&nbsp; 56-char ed25519 address</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="nav-logo" href="../index.html"><img src="../images/logo_shield.png" alt="NEXUS DARK" />
+                        <div class="logo-text">NEXUS <span>DARK</span></div>
+                    </a>
+                    <p>Sovereign-grade intelligence infrastructure for government agencies.</p>
+                    <div class="pgp-block"><span class="hdr">-----BEGIN PGP PUBLIC KEY BLOCK-----</span><br />mQINBF...
+                        [truncated] ...AAQAB<br /><span class="hdr">-----END PGP PUBLIC KEY BLOCK-----</span></div>
+                </div>
+                <div class="footer-col">
+                    <h4>Platform</h4><a href="../index.html">Home</a><a href="solutions.html">Solutions</a><a
+                        href="security.html">Security</a><a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4><a href="#">No-Logs Policy</a><a href="#">Acceptable Use</a><a href="#">Terms of
+                        Service</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Ops</h4><a href="#">Status Page</a><a href="#">Dead Drop Protocol</a><a href="#">PGP Key
+                        Server</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&#169; 2024 NEXUS DARK OPERATIONS. RESTRICTED ACCESS.</p>
+                <p class="no-logs-pill">NO LOGS &nbsp; NO TRACES</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/security.js"></script>
+</body>
+
+</html>

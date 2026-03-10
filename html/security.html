@@ -1,0 +1,493 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+    <title>Security Architecture — NEXUS DARK</title>
+    <meta name="description" content="Zero-trust, Tor-native security architecture for government SaaS operations." />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="icon" href="../images/logo_shield.png" />
+    <style>
+        .enc-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .enc-layer {
+            padding: 20px 24px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--bg-card);
+            transition: var(--transition);
+        }
+
+        .enc-layer:first-child {
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
+        }
+
+        .enc-layer:last-child {
+            border-radius: 0 0 var(--radius-md) var(--radius-md);
+            border-top: none;
+        }
+
+        .enc-layer:not(:first-child):not(:last-child) {
+            border-top: none;
+        }
+
+        .enc-layer:hover {
+            background: var(--bg-card-hover);
+            border-left: 3px solid var(--cyan);
+            padding-left: 21px;
+        }
+
+        .enc-layer-name {
+            font-weight: 600;
+            font-size: .95rem;
+        }
+
+        .enc-layer-tech {
+            font-family: var(--font-mono);
+            font-size: .75rem;
+            color: var(--cyan);
+        }
+
+        .enc-layer-desc {
+            font-size: .8rem;
+            color: var(--text-secondary);
+        }
+
+        .circuit-diagram {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            overflow-x: auto;
+            padding: 24px 0;
+        }
+
+        .circuit-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            min-width: 90px;
+            flex-shrink: 0;
+        }
+
+        .circuit-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            font-family: var(--font-mono);
+            color: var(--cyan);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-align: center;
+        }
+
+        .circuit-icon:hover {
+            background: var(--cyan-dim);
+            box-shadow: 0 0 20px var(--cyan-glow);
+        }
+
+        .circuit-label {
+            font-family: var(--font-mono);
+            font-size: .62rem;
+            color: var(--text-secondary);
+            text-align: center;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+
+        .circuit-arrow {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--cyan-dim), var(--cyan-glow), var(--cyan-dim));
+            position: relative;
+            min-width: 30px;
+            margin-bottom: 28px;
+        }
+
+        .circuit-arrow::after {
+            content: '▶';
+            position: absolute;
+            right: -6px;
+            top: -8px;
+            color: var(--cyan);
+            font-size: .7rem;
+            opacity: .6;
+        }
+
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .compliance-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 20px 16px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .compliance-item:hover {
+            border-color: var(--border-bright);
+        }
+
+        .compliance-item .icon {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+        }
+
+        .compliance-item .name {
+            font-family: var(--font-mono);
+            font-size: .72rem;
+            color: var(--cyan);
+            font-weight: 600;
+            letter-spacing: .08em;
+        }
+
+        .compliance-item .desc {
+            font-size: .75rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        @media (max-width:768px) {
+            .compliance-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="security-overlay">
+        <h2>[!] SECURITY ALERT</h2>
+        <p>Developer tools detected. Session flagged.</p>
+    </div>
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a class="nav-logo" href="../index.html">
+                <img src="../images/logo_shield.png" alt="NEXUS DARK" />
+                <div class="logo-text">NEXUS <span>DARK</span></div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="security.html">Security</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <div class="nav-status"><span class="dot"></span><span>NETWORK SECURE</span></div>
+                <a href="contact.html" class="btn btn-primary btn-sm">Request Access</a>
+            </div>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+    <nav class="mobile-nav" id="mobile-nav">
+        <a href="../index.html">Home</a><a href="solutions.html">Solutions</a>
+        <a href="security.html">Security</a><a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="page-hero">
+        <div class="container">
+            <span class="badge badge-red" style="margin-bottom:16px;display:inline-flex;"> Security
+                Architecture</span>
+            <h1>Built to Survive the<br /><span class="text-cyan">Harshest Threat Environments</span></h1>
+            <p>Zero-trust, zero-logs, zero-attribution. Every design decision assumes compromise from the start.</p>
+        </div>
+    </div>
+
+    <!-- Tor Circuit -->
+    <section class="section" id="tor-routing">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">&#x25CF; Network Layer</span>
+                <h2 class="section-title">Tor v3 Onion Routing</h2>
+                <p class="section-desc">All traffic routed through a minimum 6-hop Tor circuit before reaching NEXUS
+                    DARK infrastructure.</p>
+            </div>
+            <div class="card reveal" style="padding:40px;">
+                <div class="circuit-diagram">
+                    <div class="circuit-node">
+                        <div class="circuit-icon">CLIENT</div>
+                        <div class="circuit-label">Client<br />Agency</div>
+                    </div>
+                    <div class="circuit-arrow"></div>
+                    <div class="circuit-node">
+                        <div class="circuit-icon">GUARD</div>
+                        <div class="circuit-label">Guard<br />Node</div>
+                    </div>
+                    <div class="circuit-arrow"></div>
+                    <div class="circuit-node">
+                        <div class="circuit-icon">MID x3</div>
+                        <div class="circuit-label">Middle<br />Relay x3</div>
+                    </div>
+                    <div class="circuit-arrow"></div>
+                    <div class="circuit-node">
+                        <div class="circuit-icon">RVOUS</div>
+                        <div class="circuit-label">Rendezvous<br />Point</div>
+                    </div>
+                    <div class="circuit-arrow"></div>
+                    <div class="circuit-node">
+                        <div class="circuit-icon">NEXUS</div>
+                        <div class="circuit-label">NEXUS<br />Server</div>
+                    </div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;">
+                    <div
+                        style="background:rgba(0,0,0,.3);border-radius:var(--radius-md);padding:16px;border:1px solid var(--border);">
+                        <div
+                            style="font-family:var(--font-mono);font-size:.7rem;color:var(--cyan);margin-bottom:6px;letter-spacing:.1em;">
+                            CIRCUIT HOPS</div>
+                        <div style="font-size:1.4rem;font-weight:700;font-family:var(--font-mono);">6 minimum</div>
+                    </div>
+                    <div
+                        style="background:rgba(0,0,0,.3);border-radius:var(--radius-md);padding:16px;border:1px solid var(--border);">
+                        <div
+                            style="font-family:var(--font-mono);font-size:.7rem;color:var(--cyan);margin-bottom:6px;letter-spacing:.1em;">
+                            ONION VERSION</div>
+                        <div style="font-size:1.4rem;font-weight:700;font-family:var(--font-mono);">v3 (ed25519)</div>
+                    </div>
+                    <div
+                        style="background:rgba(0,0,0,.3);border-radius:var(--radius-md);padding:16px;border:1px solid var(--border);">
+                        <div
+                            style="font-family:var(--font-mono);font-size:.7rem;color:var(--cyan);margin-bottom:6px;letter-spacing:.1em;">
+                            ROTATION</div>
+                        <div style="font-size:1.4rem;font-weight:700;font-family:var(--font-mono);">Every 10 min</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="glow-line"></div>
+
+    <!-- Encryption Stack -->
+    <section class="section hex-bg" id="encryption">
+        <div class="container">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+                <div class="reveal">
+                    <span class="section-label">&#x25CF; Cryptography</span>
+                    <h2 style="font-size:clamp(1.8rem,3vw,2.5rem);margin-bottom:16px;">Post-Quantum<br /><span
+                            class="text-cyan">Encryption Stack</span></h2>
+                    <p style="color:var(--text-secondary);line-height:1.75;margin-bottom:32px;">NEXUS DARK implements a
+                        hybrid classical + post-quantum stack, protecting against both current adversaries and future
+                        cryptographically-relevant quantum computers (CRQC).</p>
+                    <div class="warn-box"><strong>[!] HARVEST NOW, DECRYPT LATER:</strong> Our post-quantum stack
+                        protects intelligence data from adversaries recording encrypted traffic today to decrypt when
+                        quantum computers become available.</div>
+                </div>
+                <div class="enc-stack reveal reveal-delay-2">
+                    <div class="enc-layer">
+                        <div>
+                            <div class="enc-layer-name">Application Layer</div>
+                            <div class="enc-layer-desc">End-to-end encrypted payloads</div>
+                        </div>
+                        <div class="enc-layer-tech">AES-256-GCM</div>
+                    </div>
+                    <div class="enc-layer">
+                        <div>
+                            <div class="enc-layer-name">Key Encapsulation</div>
+                            <div class="enc-layer-desc">Post-quantum key exchange</div>
+                        </div>
+                        <div class="enc-layer-tech">CRYSTALS-Kyber-1024</div>
+                    </div>
+                    <div class="enc-layer">
+                        <div>
+                            <div class="enc-layer-name">Digital Signatures</div>
+                            <div class="enc-layer-desc">Tamper-evidence & non-repudiation</div>
+                        </div>
+                        <div class="enc-layer-tech">CRYSTALS-Dilithium</div>
+                    </div>
+                    <div class="enc-layer">
+                        <div>
+                            <div class="enc-layer-name">Classical Fallback</div>
+                            <div class="enc-layer-desc">Elliptic curve hybrid</div>
+                        </div>
+                        <div class="enc-layer-tech">X25519 / Ed25519</div>
+                    </div>
+                    <div class="enc-layer">
+                        <div>
+                            <div class="enc-layer-name">Hashing</div>
+                            <div class="enc-layer-desc">Data integrity</div>
+                        </div>
+                        <div class="enc-layer-tech">SHA3-512 / BLAKE3</div>
+                    </div>
+                    <div class="enc-layer">
+                        <div>
+                            <div class="enc-layer-name">Transport</div>
+                            <div class="enc-layer-desc">Network channel</div>
+                        </div>
+                        <div class="enc-layer-tech">TLS 1.3 + Tor</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="glow-line"></div>
+
+    <!-- Zero Trust -->
+    <section class="section" id="zero-trust">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">&#x25CF; Infrastructure</span>
+                <h2 class="section-title">Zero Trust Architecture</h2>
+                <p class="section-desc">Every connection authenticated, authorized, and encrypted — regardless of
+                    network location.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card card reveal reveal-delay-1">
+                    <div class="feature-icon">HW</div>
+                    <h3 class="feature-title">Hardware Enclave Isolation</h3>
+                    <p class="feature-desc">Tenant workloads run in isolated Intel TDX / AMD SEV hardware enclaves.
+                        Attestation required before data access.</p>
+                    <div class="feature-tags"><span class="tag">Intel TDX</span><span class="tag">AMD SEV</span><span
+                            class="tag">Attestation</span></div>
+                </div>
+                <div class="feature-card card reveal reveal-delay-2">
+                    <div class="feature-icon">AG</div>
+                    <h3 class="feature-title">Air-Gap Compatibility</h3>
+                    <p class="feature-desc">Offline operation mode with one-way data diodes. USB-immunized transfer
+                        protocols for classified network environments.</p>
+                    <div class="feature-tags"><span class="tag">Data Diode</span><span class="tag">Offline
+                            Mode</span><span class="tag">Cross-Domain</span></div>
+                </div>
+                <div class="feature-card card reveal reveal-delay-3">
+                    <div class="feature-icon">ZK</div>
+                    <h3 class="feature-title">Zero-Knowledge Sessions</h3>
+                    <p class="feature-desc">No session metadata retained server-side. RAM-only session state with
+                        cryptographic erasure on disconnect.</p>
+                    <div class="feature-tags"><span class="tag">No Logs</span><span class="tag">RAM-Only</span><span
+                            class="tag">ZK Proofs</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PGP Key -->
+    <section class="section hex-bg" id="pgp">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">&#x25CF; Identity Verification</span>
+                <h2 class="section-title">Our PGP Public Key</h2>
+                <p class="section-desc">Encrypt all communications to NEXUS DARK using this key. We only respond to
+                    PGP-encrypted messages.</p>
+            </div>
+            <div class="card reveal" style="padding:32px;">
+                <pre class="pgp-block"
+                    style="font-size:.72rem;line-height:1.8;white-space:pre-wrap;word-break:break-all;border:none;padding:0;background:none;"><span class="hdr">-----BEGIN PGP PUBLIC KEY BLOCK-----</span>
+Version: GnuPG v2.4.3 (GNU/Linux)
+
+mQINBF9xR4kBEADhWkqn2zVqYpM4+XJjkG8XGPj4z7bW5+hU9tRXp2kQ3L8n
+Nc8tQmFvEy3HZpCkV6wJBe2dLMX9vFzK+0RjQs3d8KpUu7N2eAXvCz1QHg7w
+P5mY8R3jN0bLtXVk9KQz5WdM4YrTe6CsJzUHRqb3FvNpX2mLk+wZ7hG9cYQe
+D8VsBk3rT5nE6aP+jCqI0UwMeFhKlZ4AoRb7mXdT5kP9VuQy6HcN1sWLzJvI
+... [KEY BODY TRUNCATED FOR DISPLAY] ...
+=AAQAB
+<span class="hdr">-----END PGP PUBLIC KEY BLOCK-----</span>
+
+Key ID: 0xD9F72E1688CA
+Fingerprint: 4A2F 8C1E 3D7B 9F02 A5E6  B841 0C3A D9F7 2E16 88CA
+Algorithm: RSA 4096-bit  |  Created: 2024-01-01  |  Expires: Never</pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compliance -->
+    <section class="section" id="compliance">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">&#x25CF; Standards</span>
+                <h2 class="section-title">Certification & Compliance</h2>
+            </div>
+            <div class="compliance-grid">
+                <div class="compliance-item reveal reveal-delay-1">
+                    <div class="name">NIST CSF 2.0</div>
+                    <div class="desc">Cybersecurity Framework</div>
+                </div>
+                <div class="compliance-item reveal reveal-delay-2">
+                    <div class="name">FIPS 140-3</div>
+                    <div class="desc">Crypto module validation</div>
+                </div>
+                <div class="compliance-item reveal reveal-delay-3">
+                    <div class="name">CC EAL5+</div>
+                    <div class="desc">Common Criteria evaluation</div>
+                </div>
+                <div class="compliance-item reveal reveal-delay-4">
+                    <div class="name">NATO SECRET</div>
+                    <div class="desc">Compatible data handling</div>
+                </div>
+                <div class="compliance-item reveal reveal-delay-1">
+                    <div class="name">MITRE ATT&amp;CK</div>
+                    <div class="desc">Full framework coverage</div>
+                </div>
+                <div class="compliance-item reveal reveal-delay-2">
+                    <div class="name">ISO 27001</div>
+                    <div class="desc">ISMS certified</div>
+                </div>
+                <div class="compliance-item reveal reveal-delay-3">
+                    <div class="name">SOC 2 Type II</div>
+                    <div class="desc">Annual third-party audit</div>
+                </div>
+                <div class="compliance-item reveal reveal-delay-4">
+                    <div class="name">GDPR Exempt</div>
+                    <div class="desc">Sovereign ops jurisdiction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="nav-logo" href="../index.html"><img src="../images/logo_shield.png" alt="NEXUS DARK" />
+                        <div class="logo-text">NEXUS <span>DARK</span></div>
+                    </a>
+                    <p>Sovereign-grade intelligence infrastructure for government agencies.</p>
+                    <div class="pgp-block"><span class="hdr">-----BEGIN PGP PUBLIC KEY BLOCK-----</span><br />mQINBF...
+                        [truncated] ...AAQAB<br /><span class="hdr">-----END PGP PUBLIC KEY BLOCK-----</span></div>
+                </div>
+                <div class="footer-col">
+                    <h4>Platform</h4><a href="../index.html">Home</a><a href="solutions.html">Solutions</a><a
+                        href="security.html">Security</a><a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4><a href="#">No-Logs Policy</a><a href="#">Acceptable Use</a><a href="#">Terms of
+                        Service</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Ops</h4><a href="#">Status Page</a><a href="#">Dead Drop Protocol</a><a href="#">PGP Key
+                        Server</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&#169; 2024 NEXUS DARK OPERATIONS. RESTRICTED ACCESS.</p>
+                <p class="no-logs-pill">NO LOGS &nbsp; NO TRACES</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/security.js"></script>
+</body>
+
+</html>
